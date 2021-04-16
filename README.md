@@ -34,10 +34,7 @@ This is Test challenge by filed
             SECRET_KEY="this-is-a-sample-secret-key"
             FLASK_ENV="development"
             SQLALCHEMY_TRACK_MODIFICATIONS=True
-     2. lets do migrations, run following commands
-        1. `flask db init`
-        2. `flask db migrate`
-        3. `flask db upgrade`
+   
        
         this  will create a migration folder, and create table in the database
 4. run app, activate envrionment `pipenv shell` and run the command to run server
