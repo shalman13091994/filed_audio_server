@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 "Database module, including the SQLAlchemy database object and DB-related utilities."
-from application.compat import basestring
+from application.except import basestring
 from application.extensions import db
 
 # Alias common SQLAlchemy names
