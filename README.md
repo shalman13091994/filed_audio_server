@@ -1,6 +1,6 @@
-# filed_audio_file_server
 
-This is Test challenge by filed
+
+Test challenge by file
 
 
 ##setup the system
@@ -25,7 +25,7 @@ This is Test challenge by filed
        1. create db audioserver;
        2. GRANT ALL PRIVILEGES ON DATABASE audioserver
 
-3. create the table in audioserver database
+3. create the table in the database
      1. in `.env` file add the data as below
             
             # example
