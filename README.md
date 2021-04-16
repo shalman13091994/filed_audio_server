@@ -23,7 +23,7 @@ This is Test challenge by filed
       in postgresql create database "audioserver" and grant permission to user, in postgresql shell run command .
       
        1. create db audioserver;
-       2. GRANT ALL PRIVILEGES ON DATABASE audioserver to "prashant"; # my username
+       2. GRANT ALL PRIVILEGES ON DATABASE audioserver
 
 3. create the table in audioserver database
      1. in `.env` file add the data as below
