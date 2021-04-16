@@ -113,9 +113,9 @@ blueprint = Blueprint("view", __name__, url_prefix="/")
 # 	return "error ", 500
 
 
-@blueprint.route("/")
-def home():
-    return "server is runnin"
+# @blueprint.route("/")
+# def home():
+#     return "server is runnin"
 
 
 @blueprint.route("/api/v1/create", methods=["POST"])
