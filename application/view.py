@@ -100,22 +100,22 @@ blueprint = Blueprint("view", __name__, url_prefix="/")
 # 		audio_file = audiofiletype.get(audioFileType)
 # 		result = None
 # 		try:
-#
-# 			if audioFileID is None:
-# 				result = audio_file.query.all()
-# 				result = [i.as_dict() for i in result]
-# 			else:
-# 				result = audio_file.query.filter_by(id=int(audioFileID)).one()
-# 				result = [result.as_dict()]
-# 			return jsonify({"data":result})
-# 		except :
-# 			return "invalid metadata", 400
-# 	return "error ", 500
+
+			if audioFileID is None:
+				result = audio_file.query.all()
+				result = [i.as_dict() for i in result]
+			else:
+				result = audio_file.query.filter_by(id=int(audioFileID)).one()
+				result = [result.as_dict()]
+			return jsonify({"data":result})
+		except :
+			return "invalid metadata", 400
+	return "error ", 500
 
 
-# @blueprint.route("/")
-# def home():
-#     return "server is runnin"
+@blueprint.route("/")
+def home():
+    return "server is running"
 
 
 @blueprint.route("/api/v1/create", methods=["POST"])
