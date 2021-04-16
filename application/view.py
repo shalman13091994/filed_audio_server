@@ -7,99 +7,99 @@ import datetime
 blueprint = Blueprint("view", __name__, url_prefix="/")
 
 
-# @blueprint.route("/create", methods=['POST'])
-# def create():
-# 	if request.method == 'POST':
-# 		# return str(request.json)
-# 		data = request.json
-# 		type = data.get('audioFileType')
-#
-# 		print(data, type, "#########"*3)
-# 		# return data, type
-# 		audio_type = None
-# 		if audiofiletype.get(type) is None:
-# 			return "bad request", 400
-# 		audio_type = audiofiletype.get(type)
-# 		metadata = data.get("audioFileMetadata")
-#
-# 		if metadata.get('duration_time') < 0:
-# 			metadata['duration_time'] = 0
-# 		upload_time = None
-# 		current_time = datetime.datetime.utcnow()
-# 		try:
-# 			upload_time = datetime.datetime.strptime(metadata['uploaded_time'], "%d/%m/%Y %H:%M:%S")
-# 			if (upload_time.year == current_time.year) and (upload_time.month == current_time.month) and (
-# 					upload_time.date == current_time.date):
-# 				pass
-# 			else:
-# 				metadata['uploaded_time'] = current_time
-# 		except:
-# 			upload_time = current_time
-# 			metadata['uploaded_time'] = current_time
-# 		if type =='podcast':
-# 			if len(metadata['participents'])>10 or any(i for i in metadata['participents'] if len(i)>100):
-# 				return "Bad request, invalid metadata", 400
-#
-# 		data_obj = None
-# 		try:
-# 			data_obj = audio_type(**metadata)
-# 			db.session.add(data_obj)
-# 			db.session.commit()
-# 			db.session.close()
-# 			print("added in the database")
-# 		except:
-# 			print("error occur")
-# 			db.session.rollback()
-# 			return "Bad request, invalid metadata", 400
-# 		return "successfuly inserted", 200
-# 	return "invalid request type", 400
-#
-#
-# @blueprint.route("/api/v1/curd/<audioFileType>", methods=['GET'], defaults={"audioFileID": None})
-# @blueprint.route("/api/v1/curd/<audioFileType>/<audioFileID>", methods=['PUT', 'DELETE', 'GET'])
-# def audio_curd(audioFileType, audioFileID):
-# 	if request.method == 'PUT':
-# 		data = request.json
-# 		print(data)
-# 		if audioFileType not in audiofiletype:
-# 			return "bad request", 400
-# 		audio_file = audiofiletype.get(audioFileType)
-# 		metadata = data.get("audioFileMetadata")
-# 		metadata['uploaded_time'] = datetime.datetime.utcnow()
-# 		try:
-# 			audiodata = audio_file.query.filter_by(id=int(audioFileID))
-# 			audiodata.update(dict(metadata))
-# 			db.session.commit()
-# 			db.session.close()
-# 			print(audio_file.query.filter_by(id=int(audioFileID)).one().as_dict())
-# 			return "ok 200", 200
-# 		except:
-# 			db.session.rollback()
-# 			return "invalid metadata", 400
-# 	elif request.method == 'DELETE':
-# 		data = request.json
-#
-# 		if audioFileType not in audiofiletype:
-# 			return "bad request", 400
-# 		audio_file = audiofiletype.get(audioFileType)
-#
-# 		try:
-# 			id_ = audio_file.query.filter_by(id=int(audioFileID)).one()
-# 			db.session.delete(id_)
-# 			db.session.commit()
-# 			db.session.close()
-# 			return "ok", 200
-# 		except:
-# 			db.session.rollback()
-# 			return "invalid id", 400
-# 	elif request.method == 'GET':
-# 		print(audiofiletype, audioFileID)
-# 		data = request.json
-# 		if audioFileType not in audiofiletype:
-# 			return "bad request", 400
-# 		audio_file = audiofiletype.get(audioFileType)
-# 		result = None
-# 		try:
+@blueprint.route("/create", methods=['POST'])
+def create():
+	if request.method == 'POST':
+		# return str(request.json)
+		data = request.json
+		type = data.get('audioFileType')
+
+		print(data, type, "#########"*3)
+		# return data, type
+		audio_type = None
+		if audiofiletype.get(type) is None:
+			return "bad request", 400
+		audio_type = audiofiletype.get(type)
+		metadata = data.get("audioFileMetadata")
+
+		if metadata.get('duration_time') < 0:
+			metadata['duration_time'] = 0
+		upload_time = None
+		current_time = datetime.datetime.utcnow()
+		try:
+			upload_time = datetime.datetime.strptime(metadata['uploaded_time'], "%d/%m/%Y %H:%M:%S")
+			if (upload_time.year == current_time.year) and (upload_time.month == current_time.month) and (
+					upload_time.date == current_time.date):
+				pass
+			else:
+				metadata['uploaded_time'] = current_time
+		except:
+			upload_time = current_time
+			metadata['uploaded_time'] = current_time
+		if type =='podcast':
+			if len(metadata['participents'])>10 or any(i for i in metadata['participents'] if len(i)>100):
+				return "Bad request, invalid metadata", 400
+
+		data_obj = None
+		try:
+			data_obj = audio_type(**metadata)
+			db.session.add(data_obj)
+			db.session.commit()
+			db.session.close()
+			print("added in the database")
+		except:
+			print("error occur")
+			db.session.rollback()
+			return "Bad request, invalid metadata", 400
+		return "successfuly inserted", 200
+	return "invalid request type", 400
+
+
+@blueprint.route("/api/v1/curd/<audioFileType>", methods=['GET'], defaults={"audioFileID": None})
+@blueprint.route("/api/v1/curd/<audioFileType>/<audioFileID>", methods=['PUT', 'DELETE', 'GET'])
+def audio_curd(audioFileType, audioFileID):
+	if request.method == 'PUT':
+		data = request.json
+		print(data)
+		if audioFileType not in audiofiletype:
+			return "bad request", 400
+		audio_file = audiofiletype.get(audioFileType)
+		metadata = data.get("audioFileMetadata")
+		metadata['uploaded_time'] = datetime.datetime.utcnow()
+		try:
+			audiodata = audio_file.query.filter_by(id=int(audioFileID))
+			audiodata.update(dict(metadata))
+			db.session.commit()
+			db.session.close()
+			print(audio_file.query.filter_by(id=int(audioFileID)).one().as_dict())
+			return "ok 200", 200
+		except:
+			db.session.rollback()
+			return "invalid metadata", 400
+	elif request.method == 'DELETE':
+		data = request.json
+
+		if audioFileType not in audiofiletype:
+			return "bad request", 400
+		audio_file = audiofiletype.get(audioFileType)
+
+		try:
+			id_ = audio_file.query.filter_by(id=int(audioFileID)).one()
+			db.session.delete(id_)
+			db.session.commit()
+			db.session.close()
+			return "ok", 200
+		except:
+			db.session.rollback()
+			return "invalid id", 400
+	elif request.method == 'GET':
+		print(audiofiletype, audioFileID)
+		data = request.json
+		if audioFileType not in audiofiletype:
+			return "bad request", 400
+		audio_file = audiofiletype.get(audioFileType)
+		result = None
+		try:
 
 			if audioFileID is None:
 				result = audio_file.query.all()
@@ -115,7 +115,7 @@ blueprint = Blueprint("view", __name__, url_prefix="/")
 
 @blueprint.route("/")
 def home():
-    return "server is running"
+    return "server is runnin"
 
 
 @blueprint.route("/api/v1/create", methods=["POST"])
