@@ -23,14 +23,14 @@ def create_app(config_object="application.settings"):
     return app
 
 
-# def register_extensions(app):
-#     """Register Flask extensions."""
-#     db.init_app(app)
-#     migrate.init_app(app, db)
-#     return None
+def register_extensions(app):
+    "Register Flask extensions."
+    db.init_app(app)
+    migrate.init_app(app, db)
+    return None
 
 
 def register_blueprints(app):
-    """Register Flask blueprints."""
+    "Register Flask blueprints."
     app.register_blueprint(view.blueprint)
     return None
